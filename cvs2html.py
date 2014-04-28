@@ -23,8 +23,6 @@ def main():
                 count = 0
                 for line in array:
                     try:
-                        print(line)
-                        """
                         if count == 0:
                             color = "lightgreen"
                         elif count % 2:
@@ -33,7 +31,6 @@ def main():
                             count = "lightyellow"
                         print_line(line, color, maxwidth)
                         count += 1
-                        """
                     except EOFError:
                         break
                 print_end()
@@ -82,16 +79,16 @@ def print_end():
 
 
 def print_line(line, color, maxwidth=100):
-    print('<tr style="background: {0}">'.format(color))
+    print('\t<tr style="background: {0}">'.format(color))
     fields = extract_fields(line)
     for field in fields:
         if not field:
-            print("<td></td>")
+            print("\t\t<td></td>")
         else:
             number = field.replace(",", "")
             try:
                 x = float(number)
-                print('<td align="right"{0:d}</td>'.format(round(x)))
+                print('\t\t<td align="right">{0:d}</td>'.format(round(x)))
             except ValueError:
                 field = field.title()
                 field = field.replace(" And ", " and ")
@@ -99,8 +96,8 @@ def print_line(line, color, maxwidth=100):
                     field = escape_html(field)
                 else:
                     field = "{0} ...".format(escape_html(field[:maxwidth]))
-                print("<td>{0}</td>".format(field))
-    print("</tr>")
+                print("\t\t<td>{0}</td>".format(field))
+    print("\t</tr>")
 
 
 def extract_fields(line):
