@@ -20,17 +20,15 @@ def main():
                 path_to_file = sys.argv[1]
                 array = get_linelist_from_file(path_to_file)
                 print_start()
-                count = 0
-                for line in array:
+                for idx, line in enumerate(array):
                     try:
-                        if count == 0:
+                        if idx == 0:
                             color = "lightgreen"
-                        elif count % 2:
-                            count = "white"
+                        elif idx % 2:
+                            color = "white"
                         else:
-                            count = "lightyellow"
+                            color = "lightyellow"
                         print_line(line, color, maxwidth)
-                        count += 1
                     except EOFError:
                         break
                 print_end()
